@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: linear-gradient(#141e30, #243b55);
+
+        }
+
+        #mainBox {
+            width: 90%;
+            height: 100px;
+            background-color: #DAF0F8;
+            margin: auto;
+            /* border-radius: 10px; */
+            position: relative;
+            /* padding: 20px; */
+        }
+
+        #ansmainBox {
+            width: 90%;
+            background-color: #D37FCC;
+            margin: auto;
+            /* border-radius: 10px; */
+            position: relative;
+            /* padding: 20px; */
+        }
+
+
+        #questionBox {
+            background-color: white;
+            height: 100px;
+            width: 80%;
+            margin: 50px auto 10px auto;
+            font-size: 100px;
+            color: #fff;
+            text-align: center;
+        }
+
+        #answerBox {
+            background-color: white;
+            width: 75%;
+            margin: 50px auto 10px auto;
+            padding: 30px
+        }
+
+        .box {
+            height: 85px;
+            width: 85px;
+            background-color: #fff;
+            float: left;
+            margin-right: 36px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 80px;
+
+        }
+
+        .box:hover,
+        #startresetBox:hover {
+            background-color: lightblue;
+            color: #fff;
+        }
+
+        .box:active,
+        #startresetBox:active {
+            background-color: lightgray;
+
+        }
+
+        .box:last-child {
+            margin-right: 0;
+        }
+
+        #startresetBox {
+            background-color: #d294eb;
+            position: relative;
+            margin: 0 auto;
+            width: 200px;
+            padding: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        #headerBox {
+            background-color: #d294eb;
+            position: relative;
+            margin: 0 auto;
+            width: 400px;
+            padding: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+    </style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+        integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous" />
+</head>
+
+<body>
+    <h1 class="ms-5 mt-3 mb-5">
+        <a href="/blog/"><i class="fas fa-long-arrow-alt-left me-3"></i></a>
+    </h1>
+    <h1>
+        <a href="#">
+            <div id="headerBox">All Answers</div>
+
+        </a>
+
+    </h1>
+
+    <div id="mainBox">
+        <!--Question box-->
+        <div id="questionBox">
+            <p
+                style="color:black; word-wrap: break-word; font-size: 30px; font-family: 'Times New Roman', Times, serif;">
+                {{question.question}}</p>
+        </div>
+
+
+    </div>
+
+    {% for answer in answers reversed %}
+    <div id="ansmainBox">
+        <!--Answer box-->
+
+        <div id="answerBox">
+            <p>{{answer.answer|safe}}</p>
+        </div>
+
+
+
+    </div>
+    {% endfor %}
+
+
+
+</body>
+
+</html>

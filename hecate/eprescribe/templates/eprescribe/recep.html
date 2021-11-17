@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="recep.scss" /> -->
+    <link rel="stylesheet" href="{% static 'eprescribe/recep.css' %}" />
+    <title>Document</title>
+</head>
+<body>
+  <form action="/eprescribe/addnewpatient" method="post">
+    {% csrf_token %}
+    <div class="wrapper">
+      <div class="material-textfield blue">
+        <input type="text" required name="fullname"/>
+        <label data-content="Full Name">Full Name</label>
+      </div>
+      <div class="material-textfield blue">
+        <input type="text" required name="email"/>
+        <label data-content="E-mail">E-mail</label>
+      </div>
+      <div class="material-textfield blue">
+        <input type="text" required name="age"/>
+        <label data-content="Age">Age</label>
+      </div>
+      <div class="material-textfield blue dropdown">
+        
+        
+        <div>
+          <div class="custom-select" style="width:200px;">
+          <select name="sex" id="Sex">
+            <option value="other">Sex</option>
+            <option value="male">male</option>
+            <option value="female">female</option>
+            <option value="other">other</option>
+          </select>
+        </div>
+
+        </div>
+        
+      </div>
+      
+
+      <div class="material-textfield blue">
+        <input type="text" required name="region"/>
+        <label data-content="Region">Region</label>
+      </div>
+      <div class="material-textfield blue">
+        <input type="text" required name="literacy"/>
+        <label data-content="Literacy">Literacy</label>
+      </div>
+      <div class="material-textfield blue">
+        <input type="text" required name="doctorname"/>
+        <label data-content="Doctor's Name">Doctor's Name</label>
+      </div>
+      <!-- <div class="material-textfield blue">
+         <input type="password" required/>
+         <label data-content="password">password</label>
+      </div> -->
+      <div class="save">
+        <button id="submit" class="save" type="submit" >Save</button>
+      </div>
+    
+      
+
+      <!-- <button class="save">Save</button> -->
+    </div>
+
+
+  </form>
+  <script src="{% static 'eprescribe/recep.js' %}"></script>  
+      
+</body>
+</html>

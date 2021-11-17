@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: white;
+            /*  */
+
+        }
+
+        /* h1{
+    text-align: center;
+    color: #4DB6AC;
+    font-size: 72px;
+    text-shadow: 2px 2px 1px #ccc;
+    margin-top: 10px;
+} */
+        body{
+              background-color:aliceblue;
+        }
+
+        #mainBox {
+            width: 600px;
+            height: 300px;
+            background-color: #DAF0F8;
+            margin: auto;
+            /* border-radius: 10px; */
+            position: relative;
+            /* padding: 20px; */
+        }
+
+
+        #questionBox {
+            background-color: white;
+            height: 200px;
+            width: 450px;
+            margin: 50px auto 10px auto;
+            font-size: 100px;
+            color: #fff;
+            text-align: center;
+        }
+
+
+        .box {
+            height: 85px;
+            width: 85px;
+            background-color: #fff;
+            float: left;
+            margin-right: 36px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 80px;
+
+        }
+
+        .box:hover,
+        #startresetBox:hover {
+            background-color: lightblue;
+            color: #fff;
+        }
+
+        .box:active,
+        #startresetBox:active {
+            background-color: lightgray;
+
+        }
+
+        .box:last-child {
+            margin-right: 0;
+        }
+
+        #startresetBox {
+            background-color: #d294eb;
+            position: relative;
+            margin: 0 auto;
+            width: 200px;
+            padding: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        #headerBox {
+            background-color: #d294eb;
+            position: relative;
+            margin-right: 0;
+            margin-left: auto;
+            margin-bottom: 0;
+            margin-top: 0;
+            width: 400px;
+            padding: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .float-child {
+            width: 50%;
+            float: left;
+            padding: 2%;
+
+        }
+
+        .alert {
+            width: 10%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+        integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous" />
+</head>
+
+<body>
+
+    <!-- modal -->
+    <!-- Button trigger modal -->
+    <h1 class="ms-5 mt-3 mb-1 mx-1">
+        <a href="/"><i class="fas fa-long-arrow-alt-left me-3"></i></a>
+    </h1>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="/blog/askaquestion" method="post">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ask Your Question</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Type your question here</label>
+                            <textarea class="form-control" id="message-text" name="question"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <h1>
+        <a href="#">
+            <button id="headerbox" type="button" class="btn btn-danger float-end" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
+                Ask A Question
+            </button>
+
+        </a>
+
+    </h1>
+
+    {% for question in questions reversed %}
+    <div id="mainBox">
+        <!--Question box-->
+        <div id="questionBox">
+            <p style="color:black; word-wrap: break-word; font-size: 30px; font-family: 'Times New Roman', Times, serif;">
+                {{question.question}}</p>
+        </div>
+    
+        <div class="float-container">
+    
+            <div class="float-child">
+    
+                <a href="/blog/answeraquestion/{{question.id}}">
+                    <div id="startresetBox">Answer</div>
+                </a>
+    
+            </div>
+    
+            <div class="float-child alert">
+                <div class="col-1 me-5">
+                    <a href="/blog/allanswers/{{question.id}}">
+                        <div id="startresetBox">View all Answers</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    
+
+</body>
+
+</html>

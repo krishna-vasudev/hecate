@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prescription-details (Autofill-dynamic)</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+  <!-- details of patient  -->
+  <div id="htmlContent">
+    <div class="container">
+      <div class="row ms-3 mb-5">
+        <div class="col-8">
+          <p><b>Prescription ID-</b>{{prescription.id}}</p>
+          <h1 class=" mt-3 mb-5 "> {{prescription.medical.name}} </h1>
+        </div>
+
+        <div class="col mt-3 ms-5 ">
+          <h5>Dr. {{prescription.doctor_name}} </h5>
+          <p>{{prescription.medical.location}} </p>
+        </div>
+      </div>
+
+      <div class="row ms-3 mb-5">
+        <div class="col-8 ">
+          <div class=" mt-3 mb-5">
+            <h2> {{prescription.full_name}} </h2>
+            <p>{{prescription.age}} years, {{prescription.sex}} </p>
+          </div>
+        </div>
+        <div class="col mt-3 ms-5 ">
+          <h5>Date </h5>
+          <p>{{prescription.date}} </p>
+        </div>
+      </div>
+
+      <h5> Disease Details</h5>
+      <p class="mb-5"> {{prescription.disease_description}} </p>
+
+    </div>
+
+    <!-- table of medicines   -->
+    <div class="container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Medince</th>
+            <th scope="col">Times</th>
+            <th scope="col">Duration</th>
+            <th scope="col">Food</th>
+          </tr>
+        </thead>
+        <tbody class="section">
+          {% for medicine in medicines %}
+          <tr>
+            <td>{{medicine.name}}</td>
+            <td>{{medicine.frequency}}</td>
+            <td>{{medicine.duration}}</td>
+            <td>{{medicine.food}}</td>
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="editor"></div>
+  <div class="row m-5">
+    <div class="col ms-5"> <button type="button" class="btn btn-lg btn-outline-success" id="generatePDF">
+        Download</button> </div>
+    <div class="col ms-5"> <button type="button" class="btn btn-lg btn-outline-success">Share</button> </div>
+  </div>
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+<script>
+  var doc = new jsPDF();
+  var specialElementHandlers = {
+    '#editor': function (element, renderer) {
+      return true;
+    }
+  };
+
+  //margins.left, // x coord   margins.top, { // y coord
+  $('#generatePDF').click(function () {
+    doc.fromHTML($('#htmlContent').html(), 15, 15, {
+      'width': 700,
+      'elementHandlers': specialElementHandlers
+    });
+    doc.save('sample_file.pdf');
+  });
+</script>
+
+</html>

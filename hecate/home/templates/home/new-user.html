@@ -1,0 +1,238 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <!-- Boxicons CDN Link -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'home/homestyle.css' %}" type="text/css">
+    <style>
+  @media only screen and (max-width: 1400px) and (min-width:800px) {
+  
+
+  .carousel-item img{
+    object-fit: cover;
+    object-position: center;
+    height: 87vh;
+    width: 100vw;
+    overflow: hidden;
+  }
+  .carousel-item:before{
+    content: "";
+    background-image: 
+      linear-gradient(
+        to bottom,
+        transparent, rgba(0,0,0,0.5)
+      );
+      display: block;
+      position: absolute;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+
+  }
+  }
+  
+
+
+
+
+
+
+    </style>
+
+</head>
+<body>
+
+<!-- navbar -->
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><img src="{% static 'home/images/logo.jpg' %}" alt="" width="30" height="24" class="d-inline-block align-text-top">
+      Hecate</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse ms-5" id="navbarScroll">
+      <!-- <form class="d-flex"> -->
+        <!-- <button class="btn y-2" type="submit"> -->
+          <div class="push" style="margin-left: auto;">
+            <a class="btn btn-light m-3" style="margin-left: auto;"  href="/accounts/login/patient" role="button">Patient</a>
+          
+          
+      <!-- </form> -->
+      <!-- <form class="d-flex "> -->
+          <!-- <button class="btn btn-outline-light my-2" type="submit">My Bookings</button> -->
+          <a class="btn btn-light m-3" style="margin-left: auto;"  href="/accounts/login/medical" role="button">Medical</a>
+          <!-- <a class="btn btn-light m-3" style="margin-left: auto;" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Help a blind</a> -->
+        </div>
+        <!-- </form> -->
+    </div>
+  </div>
+</nav>
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert {{message.tags}} alert-dismissible fade show container-fluid my-0" role="alert">
+  <strong>{{ message }}</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="outline: none;">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    $('.alert').alert()
+  })
+</script>
+{% endif %}
+
+<!--  hero section -->
+
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <!-- <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div> -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{% static 'home/images/cancer.webp' %}" class="d-block w-100 images" alt="...">
+            <div class="carousel-caption  d-md-block">
+              <h5 >First slide label</h5>
+              <p>Some representative placeholder content for the first slide.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'home/images/BP.jpg' %}" class="d-block w-100 images" alt="...">
+            <div class="carousel-caption  d-md-block">
+              <h5>Second slide label</h5>
+              <p>Some representative placeholder content for the second slide.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'home/images/diabetes.jpg' %}" class="d-block w-100 images" alt="...">
+            <div class="carousel-caption  d-md-block">
+              <h5>Third slide label</h5>
+              <p>Some representative placeholder content for the third slide.</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+
+<!-- faq -->
+
+<div class="accordion mt-4">
+  <!-- <div class="image-box">
+    <img src="images/mainImg.png" alt="">
+  </div> -->
+  <div class="accordion-text">
+    <div class="title">FAQ</div>
+  <ul class="faq-text">
+    <li>
+      <div class="question-arrow">
+        <span class="question">What do you mean by HTML & CSS?</span>
+        <i class="bx bxs-chevron-down arrow"></i>
+      </div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, doloribus.</p>
+      <span class="line"></span>
+    </li>
+    <li>
+      <div class="question-arrow">
+        <span class="question">What do you mean by JavaScript?</span>
+        <i class="bx bxs-chevron-down arrow"></i>
+      </div>
+      <p>JavaScript is a text-based programming language used both on the client-side and server-side that allows you to make web pages interactive</p>
+      <span class="line"></span>
+    </li>
+    <li>
+      <div class="question-arrow">
+        <span class="question">From where you learned HTML & CSS?</span>
+        <i class="bx bxs-chevron-down arrow"></i>
+      </div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non, necessitatibus.</p>
+      <span class="line"></span>
+    </li>
+    <li>
+      <div class="question-arrow">
+        <span class="question">Which code editor do you use?</span>
+        <i class="bx bxs-chevron-down arrow"></i>
+      </div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, labore.</p>
+      <span class="line"></span>
+    </li>
+    <li>
+      <div class="question-arrow">
+        <span class="question">Software you use for video editing?</span>
+        <i class="bx bxs-chevron-down arrow"></i>
+      </div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, repudiandae!</p>
+      <span class="line"></span>
+    </li>
+  </ul>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-4">
+    <a href="/blog/" type="button" class="btn btn-outline-success ">Have a question?</a>
+  </div>
+  
+
+
+</div>
+
+
+<script>
+  let li = document.querySelectorAll(".faq-text li");
+  for (var i = 0; i < li.length; i++) {
+    li[i].addEventListener("click", (e)=>{
+      let clickedLi;
+      if(e.target.classList.contains("question-arrow")){
+        clickedLi = e.target.parentElement;
+      }else{
+        clickedLi = e.target.parentElement.parentElement;
+      }
+     clickedLi.classList.toggle("showAnswer");
+    });
+  }
+</script>
+
+<footer class="page-footer font-small bg-dark mt-5 pt-4">
+  <div class="footer-copyright text-center py-3" style="color: white"> <a href="/predictor/"
+      style="color: white ; text-decoration: none"> <button class="btn btn-outline-primary" type="submit">Medical Non-Adherance Predictor</button></a>
+  </div>
+  <div class="footer-copyright text-center py-3" style="color: white">© 2020 Copyright:
+    <a href="#" style="color: white ; text-decoration: none"> hecate.com</a>
+  </div>
+</footer>
+
+
+    
+</body>
+</html>
